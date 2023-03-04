@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vanilla_StopWatch</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#body{
+			background-color: orange;
+			height: 100vh;
+			width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+		}
+		#canvas{
+			border:2px solid white;
+			height: 250px;
+			width: 500px;
+			display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+
+		}
+		#btnDiv{
+			width: 100%;
+			
+			display: flex;
+			justify-content: space-around;
+		}
+		.btn{
+			width: 15%;
+			height: 35px;
+			border:2px solid white;
+			background-color: orange;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="body">
+		<div id="canvas">
+			<div><h1>StopWatch</h1></div>
+			<div><span id="min"><b>00</b></span>:<span id="sec"><b>00</b></span>:<span id="milisec"><b>00</b></span></div>
+			<div id="btnDiv"><button onclick="start()" class="btn"><b>START</b></button>
+			<button onclick="stop()" class="btn"><b>STOP</b></button>
+			<button onclick="reset()" class="btn"><b>RESET</b></button></div>
+		</div>
+	</div>
+	
+</body>
+<script>
+	let counter = 0;
+	let isStarted = false;
+    let second = 0;
+    let minutes = 0;
+	function update(){
+		if(isStarted==true){
+			counter = counter+1;
+			let milisec = document.getElementById('milisec');
+			milisec.innerHTML = counter;
+		}
+		if(counter==99){
+			let sec = document.getElementById('sec');
+			second = second+1 
+			sec.innerHTML = second;
+            counter=0;
+		}
+		if(second==59){
+			let min = document.getElementById('min');
+			minutes = minutes+1
+			min.innerHTML = minutes;
+			second = 0; 
+		}
+	}
+	setInterval(update, 10)
+	update();
+	function start(){
+		isStarted = true;
+	}
+	function stop(){
+		isStarted = false;
+	}
+	function reset(){
+		isStarted = false;
+		counter = 0;
+		second = 0;
+		sec.innerHTML = '00';
+		min.innerHTML = '00';
+		milisec.innerHTML = '00';
+	}
+</script>
+</html>
+
+
